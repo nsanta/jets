@@ -4,14 +4,14 @@ class Jets::Resource::ApiGateway::RestApi
     include Jets::AwsServices
 
     def self.changed?
-      new.changed?
+      d = new.changed?
     end
 
     def changed?
       deployed_routes = build
       deployed_routes.each do |deployed_route|
-        new_route = find_comparable_route(deployed_route)
-        if new_route && new_route.to != deployed_route.to
+        new_routes = select_comparable_routes(deployed_route)
+        if route_changed?(deployed_route, new_routes)
           # change in already deployed route has been detected, requires bluegreen deploy
           return true
         end
@@ -56,13 +56,12 @@ class Jets::Resource::ApiGateway::RestApi
       routes
     end
 
-    # Find a route that has the same path and method. This is a comparable route
+    # Select routes that has the same to and method. This is a comparable route
     # Then we will compare the to or controller action to see if an already
     # deployed route has been changed.
-    def find_comparable_route(deployed_route)
-      new_routes.find do |new_route|
-        new_route.path == deployed_route.path &&
-        new_route.method == deployed_route.method
+    def select_comparable_routes(deployed_route)
+      new_routes.select do |new_route|
+        same_to?(new_route, deployed_route) && same_method?(new_route, deployed_route)
       end
     end
 
@@ -123,5 +122,21 @@ class Jets::Resource::ApiGateway::RestApi
     memoize :rest_api_id
 
     # apigateway.get_rest_api(rest_api_id: rest_api_id) # resp
+
+    private
+
+    def same_to?(new_route, deployed_route)
+      new_route.to == deployed_route.to
+    end
+
+    def same_method?(new_route, deployed_route)
+      new_route.method == deployed_route.method
+    end
+
+    def route_changed?(deployed_route, new_routes)
+      !new_routes.detect do |new_route|
+        new_route.path == deployed_route.path
+      end
+    end
   end
 end
