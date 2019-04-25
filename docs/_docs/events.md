@@ -1,9 +1,19 @@
 ---
 title: Events
+nav_order: 20
 ---
 
-AWS Lambda supports many event triggers.  The next sections cover some of the event triggers supported by Jets.
+Jets is also a powerful Glue Serverless Framework.
 
-<a id="prev" class="btn btn-basic" href="{% link _docs/cors-support.md %}">Back</a>
-<a id="next" class="btn btn-primary" href="{% link _docs/events-cloudwatch.md %}">Next Step</a>
-<p class="keyboard-tip">Pro tip: Use the <- and -> arrow keys to move back and forward.</p>
+AWS Lambda supports many event triggers.  With event triggers, you can use Lambda functions as glue. Here's a list of the events supported by Jets.
+
+<ul>
+{% assign event_docs = site.docs | where: "categories","events" %}
+{% for doc in event_docs %}
+  <li><a href='{{doc.url}}'>{{doc.title}}</a></li>
+{% endfor %}
+</ul>
+
+The next sections cover the event triggers.
+
+{% include prev_next.md %}

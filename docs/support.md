@@ -1,13 +1,14 @@
 ---
 title: Support
+nav_order: 82
 ---
 
 ## Getting Help
 
 If you're looking for support for Jets, here are some options:
 
-* Read the [Jets Documentation](http://rubyonjets.com)
-* If you have a question about using Jets, start a discussion on [Jets Community Forum](https://community.rubyonjets.com/) or [StackOverflow](https://stackoverflow.com/questions/tagged/rubyonjets)
+* Read the [Ruby on Jets Documentation](http://rubyonjets.com)
+* If you have a question about using Jets, start a discussion on [Ruby on Jets Community Forum](https://community.rubyonjets.com/) or [StackOverflow](https://stackoverflow.com/questions/tagged/rubyonjets)
 * Chat with Jets users &mdash; Join [the Gitter channel](https://gitter.im/tongueroo/jets) or [our IRC channel on Freenode](irc:irc.freenode.net/rubyonjets)
 * There are several video tutorials on the [YouTube tongueroo channel](https://www.youtube.com/tongueroo). For updates, [subscribe to the channel](https://www.youtube.com/user/tongueroo?sub_confirmation=1).
 * There are many tutorial articles on the BoltOps [Nuts and Bolts and Blog](https://blog.boltops.com/).  For updates, [sign up for the email newsletter](http://eepurl.com/c3JcID).
@@ -29,6 +30,4 @@ If you would like professional help, [BoltOps](https://www.boltops.com/) provide
 * Training: Mentorship, education, and understanding how to leverage and use AWS and serverless paradigms.
 * Consulting: Can help review, design, and architect your serverless application. Can evaluate trade-offs, limits, and benefits. Or just provide general guidance. 
 
-<a id="prev" class="btn btn-basic" href="{% link _docs/contributing.md %}">Back</a>
-<a id="next" class="btn btn-primary" href="{% link _docs/conduct.md %}">Next Step</a>
-<p class="keyboard-tip">Pro tip: Use the <- and -> arrow keys to move back and forward.</p>
+{% include prev_next.md %}

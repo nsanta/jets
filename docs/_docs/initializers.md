@@ -1,8 +1,13 @@
 ---
 title: Initializers
+nav_order: 48
 ---
 
-Jets supports custom initalization by running your app's `config/initalizers` files during the bootup process.  Here's an example:
+Jets supports custom initalization by running your app's `config/initalizers` files during the bootup process.
+
+## Common Initializers
+
+Common initializers always get run and go in the `config/initializers` folder. Here's an example:
 
 config/initializers/custom.rb:
 
@@ -11,8 +16,24 @@ Jets.application.config.silly = ActiveSupport::OrderedOptions.new
 Jets.application.config.silly.name = "FooBar"
 ```
 
-The example above is just a simple example.
+## Environment Initializers
 
-<a id="prev" class="btn btn-basic" href="{% link _docs/jets-turbines.md %}">Back</a>
-<a id="next" class="btn btn-primary" href="{% link _docs/custom-resources.md %}">Next Step</a>
-<p class="keyboard-tip">Pro tip: Use the <- and -> arrow keys to move back and forward.</p>
+Jets supports environment specific initializers also. Examples:
+
+config/environments/development.rb:
+
+```ruby
+Jets.application.configure do
+  config.function.memory_size = 1536
+end
+```
+
+config/environments/production.rb:
+
+```ruby
+Jets.application.configure do
+  config.function.memory_size = 2048
+end
+```
+
+{% include prev_next.md %}
