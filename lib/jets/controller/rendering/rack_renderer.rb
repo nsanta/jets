@@ -165,7 +165,11 @@ module Jets::Controller::Rendering
                     else
                       code
                     end
-      (status_code || 200).to_s # API Gateway requires a string but rack is okay with either
+
+      # API Gateway requires status to be String but local rack is okay with either
+      # Note, ELB though requires status to be an Integer. We'll later in rack/adapter.rb
+      # adjust status to an Integer if request is coming from an ELB.
+      (status_code || 200).to_s
     end
 
     def set_content_type!(status, headers)
@@ -202,6 +206,7 @@ module Jets::Controller::Rendering
         end
 
         ActionController::Base.append_view_path("#{Jets.root}/app/views")
+        ActionView::Resolver.caching = !Jets.env.development?
 
         setup_webpacker if Jets.webpacker?
       end
@@ -220,8 +225,9 @@ module Jets::Controller::Rendering
         Dir.glob(expression).each do |path|
           next unless File.file?(path)
           class_name = path.sub("#{project_root}/app/helpers/","").sub(/\.rb/,'')
+
           unless class_name == "application_helper"
-            klasses << class_name.classify.constantize # autoload
+            klasses << class_name.camelize.constantize # autoload
           end
         end
         klasses
@@ -242,5 +248,3 @@ module Jets::Controller::Rendering
     end
   end
 end
-
-Jets::Controller::Rendering::RackRenderer.setup!

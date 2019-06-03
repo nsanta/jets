@@ -1,4 +1,4 @@
-class Jets::Cfn
+module Jets::Cfn
   class Ship
     extend Memoist
     include Jets::AwsServices
@@ -38,7 +38,7 @@ class Jets::Cfn
           The logs above show the CloudFormation parent stack events and points to the stack with the error.
           Please go to the CloudFormation console and look for the specific stack with the error.
           The specific child stack usually shows more detailed information and can be used to resolve the issue.
-          Example of checking the CloudFormation console: http://rubyonjets.com/docs/debugging-cloudformation/
+          Example of checking the CloudFormation console: https://rubyonjets.com/docs/debugging/cloudformation/
         EOL
         return
       end
@@ -96,11 +96,7 @@ class Jets::Cfn
       return if Jets.poly_only?
 
       puts "Prewarming application."
-      if Jets::PreheatJob::CONCURRENCY > 1
-        Jets::PreheatJob.perform_now(:torch, {quiet: true})
-      else
-        Jets::PreheatJob.perform_now(:warm, {quiet: true})
-      end
+      Jets::PreheatJob.prewarm!
     end
 
     def clean_deploy_logs

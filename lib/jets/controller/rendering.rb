@@ -1,6 +1,5 @@
 class Jets::Controller
   module Rendering
-    autoload :RackRenderer, "jets/controller/rendering/rack_renderer"
     include Redirection
 
     def ensure_render
@@ -65,11 +64,7 @@ class Jets::Controller
     def add_stage_name(url)
       return url unless actual_host
 
-      if actual_host.include?("amazonaws.com") && url.starts_with?('/')
-        stage_name = Jets::Resource::ApiGateway::Deployment.stage_name
-        url = "/#{stage_name}#{url}"
-      end
-      url
+      Jets::Controller::Stage.add(actual_host, url)
     end
 
     def url_for(url)

@@ -14,8 +14,8 @@ module Jets::Core
   end
 
   # Load all application base classes and project classes
-  def boot(options={})
-    Jets::Booter.boot!(options)
+  def boot
+    Jets::Booter.boot!
   end
 
   def root

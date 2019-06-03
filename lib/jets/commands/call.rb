@@ -2,11 +2,6 @@ require "base64"
 require "json"
 
 class Jets::Commands::Call
-  autoload :BaseGuesser, "jets/commands/call/base_guesser"
-  autoload :AutoloadGuesser, "jets/commands/call/autoload_guesser"
-  autoload :AnonymousGuesser, "jets/commands/call/anonymous_guesser"
-  autoload :Guesser, "jets/commands/call/guesser"
-
   include Jets::AwsServices
 
   def initialize(provided_function_name, event, options={})
@@ -65,7 +60,7 @@ class Jets::Commands::Call
       qualifier: @qualifier, # "1",
     }
     begin
-      resp = lambda.invoke(options)
+      resp = aws_lambda.invoke(options)
     rescue Aws::Lambda::Errors::ResourceNotFoundException
       puts "The function #{function_name} was not found.  Maybe check the spelling or the AWS_PROFILE?".color(:red)
       return

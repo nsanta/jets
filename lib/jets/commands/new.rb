@@ -83,7 +83,7 @@ module Jets::Commands
         exit 1
       end
 
-      command = "jets webpacker:install"
+      command = "bundle exec jets webpacker:install"
       command += " FORCE=1" if options[:force]
       run(command)
     end
@@ -133,7 +133,7 @@ JS
             jets server # localhost:8888 should have the Jets welcome page
 
           Scaffold example:
-            jets generate scaffold Post title:string body:text published:boolean
+            jets generate scaffold post title:string body:text published:boolean
             jets db:create db:migrate
 
           To deploy to AWS Lambda, edit your .env.development.remote and add a DATABASE_URL endpoint.

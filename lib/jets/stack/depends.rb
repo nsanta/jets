@@ -1,7 +1,5 @@
 class Jets::Stack
   class Depends
-    autoload :Item, "jets/stack/depends/item"
-
     def initialize(items)
       @items = items
     end
@@ -11,7 +9,7 @@ class Jets::Stack
       @items.each do |item|
         logical_id = item.stack.to_s.camelize # logical_id
         dependency_outputs(logical_id).each do |output|
-          dependency_class = logical_id.to_s.classify
+          dependency_class = logical_id.to_s.camelize
           output_key = item.options[:class_prefix] ?
             "#{dependency_class}#{output}" : # already camelized
             output
@@ -30,7 +28,7 @@ class Jets::Stack
     end
 
     def dependency_outputs(logical_id)
-      logical_id.to_s.classify.constantize.output_keys
+      logical_id.to_s.camelize.constantize.output_keys
     end
   end
 end

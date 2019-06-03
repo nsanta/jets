@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 This project *loosely tries* to adhere to [Semantic Versioning](http://semver.org/).
 
+## [1.9.10]
+- #276 Correct CloudFormation debugging url
+- #277 hot reload views for development mode
+
+## [1.9.9]
+- #275 warn about bundler/setup failure
+
+## [1.9.8]
+- #272 Jets Autoloaders with zeitwerk
+- #273 remove need for forked rails
+- #274 remove jets-gems as vendor dependency
+
+## [1.9.7]
+- #271 fix deploy for job mode with no config/routes.rb file
+
+## [1.9.6]
+- #268 Fix starter crud.js due to core-js module
+- #269 Bundler.setup to fix namespace autovivification
+
+## [1.9.5]
+- #266 replace classify with camelize
+
+## [1.9.4]
+- #265 bug fix: show jets url at the end of a jets deploy
+
+## [1.9.3]
+- #264 auto reload routes for development
+
+## [1.9.2]
+- #232 Rename lambda method to aws_lambda to avoid ruby keyword collision
+- #259 fix stage name in dev mode for redirect also
+- #262 Handle nil body on mega request proxy
+- #263 fix for static files now that not using shotgun
+
+## [1.9.1]
+- #257 dont generate handlers for concerns
+- #258 from Fix custom domain base mapping
+
+## [1.9.0]
+- #249 docs grammar improvements
+- #252 docs cli improvements
+- #254 speed up development auto reloading
+- #256 dont add /dev prefix if on_cloud9
+
+## [1.8.14]
+- update jets-gems
+
+## [1.8.13]
+- s3_event: fix s3 bucket ensure_exists check
+
+## [1.8.12]
+- #243 Update activerecord docs
+- #244 Make ENV['HOME'] an absolute path because some file operations will barf otherwise
+- #247 Fix Jets afterburner: fix wait_for_socket on aws lambda, rescue Errno::EAFNOSUPPORT
+
+## [1.8.11]
+- #242 adjust resp when request coming from elb
+- update jets generate scaffold post casing
+
+## [1.8.10]
+- #208 add jets degenerate as opposite of generator
+- #219 fix circleci usage, remove CIRCLECI env
+- #222 fix config.function.dead_letter_config in starter application.rb
+- #223 add jets degenerate as opposite of generator cleanup
+- #224 add jets degenerate as opposite of generator cleanup
+- #228 organize docs better into subfolders
+- #230 Fix ValidationError branch of Cfn::Ship#update_stack
+- #231 Add git submodules to contributing documentation.
+- #234 Better API mode controller generator
+- #238 Fix routing link in considerations-api-gateway doc
+- #239 autoload concerns and allow them to work
+
 ## [1.8.9]
 - JETS\_DEBUG\_EAGER_LOAD flag
 - #216 fix webpacker v3.5 to v4 upgrade related issues

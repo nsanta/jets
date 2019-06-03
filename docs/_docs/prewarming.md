@@ -1,6 +1,6 @@
 ---
 title: Prewarming
-nav_order: 17
+nav_order: 18
 ---
 
 Jets supports prewarming your application to remedy the Lambda cold start issue.  Prewarming is enabled by default.  Only [Controller]({% link _docs/controllers.md %}) functions are prewarmed. To adjust the prewarming settings, edit your `config/application.rb`. Example:
@@ -43,7 +43,7 @@ After a deployment finishes, Jets automatically prewarms the app immediately.  T
 
 ## Prewarm Custom Headers
 
-Jets appends a `x-jets-prewarm-count` header to the response to help you see if the lambda function was prewarmed. The header looks like this:
+Jets appends an `x-jets-prewarm-count` header to the response to help you see if the lambda function was prewarmed. The header looks like this:
 
 ![](/img/docs/prewarm-header.png)
 

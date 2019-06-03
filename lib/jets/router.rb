@@ -2,8 +2,6 @@ require 'text-table'
 
 module Jets
   class Router
-    autoload :Scope, 'jets/router/scope'
-
     attr_reader :routes
     def initialize
       @routes = []
@@ -140,6 +138,10 @@ module Jets
 
       router = Jets.application.routes
       @@drawn_router = router
+    end
+
+    def self.clear!
+      @@drawn_router = nil
     end
 
     def self.routes
