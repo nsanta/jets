@@ -17,7 +17,7 @@ module AwsLambda
       # formatted as JSON, and should get a different content-type header.
       def marshall_response(method_response)
         case method_response
-        when StringIO, IO
+        when StringIO, IO, String
           [method_response, 'application/unknown']
         else
           # Orignal method calls .to_json but this collides with ActiveSupport's to_json
